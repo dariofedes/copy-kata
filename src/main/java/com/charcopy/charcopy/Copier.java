@@ -10,6 +10,8 @@ public class Copier {
     }
 
     public void copy() {
-        this.source.getChar();
+        char charToSave = source.getChar();
+
+        destination.setChar(charToSave);
     }
 }

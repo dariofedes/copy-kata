@@ -5,8 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class CharCopyShould {
@@ -23,11 +22,24 @@ class CharCopyShould {
 	}
 
 	@Test
-	void call_get_char_from_source() {
+	void call_getChar_from_source() {
 		// when
 		copier.copy();
 
 		// assert
 		verify(sourceMock).getChar();
+	}
+
+	@Test
+	void call_setChar_with_the_char_got() {
+		//given
+		char copiedChar = 'A';
+		when(sourceMock.getChar()).thenReturn(copiedChar);
+
+		//when
+		copier.copy();
+
+		//assert
+		verify(destinationMock).setChar(copiedChar);
 	}
 }
