@@ -8,4 +8,8 @@ public class Copier {
         this.source = source;
         this.destination = destination;
     }
+
+    public void copy() {
+        this.source.getChar();
+    }
 }
