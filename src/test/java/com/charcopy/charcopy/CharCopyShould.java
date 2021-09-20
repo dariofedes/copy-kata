@@ -10,9 +10,11 @@ import static org.mockito.Mockito.*;
 @SpringBootTest
 class CharCopyShould {
 
-		ISource sourceMock;
-		IDestination destinationMock;
-		Copier copier;
+	ISource sourceMock;
+	IDestination destinationMock;
+	Copier copier;
+	char [] fakeChars = {'A', 'B', 'C', '\n', 'D'};
+	int index = 0;
 
 	@BeforeEach
 	void set() {
@@ -41,5 +43,19 @@ class CharCopyShould {
 
 		//assert
 		verify(destinationMock).setChar(copiedChar);
+	}
+
+	@Test
+	void not_save_new_lines() {
+		//given
+		char copiedChar = '\n';
+		when(sourceMock.getChar()).thenReturn(copiedChar);
+
+
+		//when
+		copier.copy();
+
+		//assert
+		verify(destinationMock, never()).setChar(copiedChar);
 	}
 }

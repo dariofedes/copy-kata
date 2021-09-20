@@ -11,7 +11,6 @@ public class Copier {
 
     public void copy() {
         char charToSave = source.getChar();
-
-        destination.setChar(charToSave);
+        if (charToSave != '\n') destination.setChar(charToSave);
     }
 }
